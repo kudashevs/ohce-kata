@@ -7,27 +7,28 @@ use PHPUnit\Framework\TestCase;
 
 class PalindromeTest extends TestCase
 {
+    private Palindrome $palindrome;
+
+    protected function setUp(): void
+    {
+        $this->palindrome = new Palindrome();
+    }
+
     /** @test */
     public function it_can_process_an_empty_string()
     {
-        $palindrome = new Palindrome();
-
-        $this->assertFalse($palindrome->isPalindrome(''));
+        $this->assertFalse($this->palindrome->isPalindrome(''));
     }
 
     /** @test */
     public function it_can_process_a_non_palindrome()
     {
-        $palindrome = new Palindrome();
-
-        $this->assertFalse($palindrome->isPalindrome('not'));
+        $this->assertFalse($this->palindrome->isPalindrome('not'));
     }
 
     /** @test */
     public function it_can_process_a_palidrome()
     {
-        $palindrome = new Palindrome();
-
-        $this->assertTrue($palindrome->isPalindrome('non'));
+        $this->assertTrue($this->palindrome->isPalindrome('non'));
     }
 }
