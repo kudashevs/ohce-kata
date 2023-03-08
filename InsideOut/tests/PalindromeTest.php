@@ -14,4 +14,12 @@ class PalindromeTest extends TestCase
 
         $this->assertFalse($palindrome->isPalindrome(''));
     }
+
+    /** @test */
+    public function it_can_process_a_non_palindrome()
+    {
+        $palindrome = new Palindrome();
+
+        $this->assertFalse($palindrome->isPalindrome('not'));
+    }
 }
