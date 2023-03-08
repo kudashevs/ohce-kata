@@ -27,6 +27,15 @@ class PalindromeTest extends TestCase
     }
 
     /** @test */
+    public function it_can_process_a_palindrome()
+    {
+        $processed = $this->palindrome->process('non');
+
+        $this->assertStringContainsString('non' . PHP_EOL, $processed);
+        $this->assertStringContainsString('¡Bonita palabra!', $processed);
+    }
+
+    /** @test */
     public function it_can_check_an_empty_string()
     {
         $this->assertFalse($this->palindrome->isPalindrome(''));

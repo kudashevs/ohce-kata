@@ -8,6 +8,10 @@ class Palindrome
 {
     public function process(string $str): string
     {
+        if ($this->isPalindrome($str)) {
+            return $str . PHP_EOL . '¡Bonita palabra!';
+        }
+
         return strrev($str);
     }
 
