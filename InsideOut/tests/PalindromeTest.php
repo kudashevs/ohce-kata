@@ -15,19 +15,19 @@ class PalindromeTest extends TestCase
     }
 
     /** @test */
-    public function it_can_process_an_empty_string()
+    public function it_can_check_an_empty_string()
     {
         $this->assertFalse($this->palindrome->isPalindrome(''));
     }
 
     /** @test */
-    public function it_can_process_a_non_palindrome()
+    public function it_can_check_a_non_palindrome()
     {
         $this->assertFalse($this->palindrome->isPalindrome('not'));
     }
 
     /** @test */
-    public function it_can_process_a_palidrome()
+    public function it_can_check_a_palidrome()
     {
         $this->assertTrue($this->palindrome->isPalindrome('non'));
     }
