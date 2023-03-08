@@ -29,6 +29,15 @@ class GreeterTest extends TestCase
         $this->assertSame('¡Buenos días Pedro!', $greeter->greet('Pedro'));
     }
 
+    /** @test */
+    public function it_can_return_buenas_tardes_pedro()
+    {
+        $timeStub = $this->createTimeStub('13');
+        $greeter = new Greeter($timeStub);
+
+        $this->assertSame('¡Buenas tardes Pedro!', $greeter->greet('Pedro'));
+    }
+
     /**
      * @return MockObject
      */
