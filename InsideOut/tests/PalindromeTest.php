@@ -22,4 +22,12 @@ class PalindromeTest extends TestCase
 
         $this->assertFalse($palindrome->isPalindrome('not'));
     }
+
+    /** @test */
+    public function it_can_process_a_palidrome()
+    {
+        $palindrome = new Palindrome();
+
+        $this->assertTrue($palindrome->isPalindrome('non'));
+    }
 }

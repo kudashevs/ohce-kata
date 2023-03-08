@@ -8,6 +8,8 @@ class Palindrome
 {
     public function isPalindrome(string $str): bool
     {
-        return false;
+        $letters = str_split($str);
+
+        return count($letters) > 1 && $letters === array_reverse($letters);
     }
 }
