@@ -6,10 +6,12 @@ namespace OhceKata\InsideOut;
 
 class Palindrome
 {
+    const PALINDROME_MESSAGE = '¡Bonita palabra!';
+
     public function process(string $str): string
     {
         if ($this->isPalindrome($str)) {
-            return $str . PHP_EOL . '¡Bonita palabra!';
+            return $str . PHP_EOL . self::PALINDROME_MESSAGE;
         }
 
         return strrev($str);
