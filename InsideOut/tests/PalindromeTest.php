@@ -15,6 +15,12 @@ class PalindromeTest extends TestCase
     }
 
     /** @test */
+    public function it_can_process_an_empty_string()
+    {
+        $this->assertSame('', $this->palindrome->process(''));
+    }
+
+    /** @test */
     public function it_can_check_an_empty_string()
     {
         $this->assertFalse($this->palindrome->isPalindrome(''));

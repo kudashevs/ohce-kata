@@ -6,6 +6,11 @@ namespace OhceKata\InsideOut;
 
 class Palindrome
 {
+    public function process(string $str): string
+    {
+        return $str;
+    }
+
     public function isPalindrome(string $str): bool
     {
         if (strlen($str) < 2) {
