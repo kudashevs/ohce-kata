@@ -17,7 +17,7 @@ class Palindrome
         return strrev($str);
     }
 
-    public function isPalindrome(string $str): bool
+    private function isPalindrome(string $str): bool
     {
         if (strlen($str) < 2) {
             return false;
