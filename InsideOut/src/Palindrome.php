@@ -8,7 +8,7 @@ class Palindrome
 {
     public function process(string $str): string
     {
-        return $str;
+        return strrev($str);
     }
 
     public function isPalindrome(string $str): bool

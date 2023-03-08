@@ -21,6 +21,12 @@ class PalindromeTest extends TestCase
     }
 
     /** @test */
+    public function it_can_process_a_non_palindrome()
+    {
+        $this->assertSame('pots', $this->palindrome->process('stop'));
+    }
+
+    /** @test */
     public function it_can_check_an_empty_string()
     {
         $this->assertFalse($this->palindrome->isPalindrome(''));
