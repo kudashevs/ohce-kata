@@ -12,6 +12,15 @@ use PHPUnit\Framework\TestCase;
 class GreeterTest extends TestCase
 {
     /** @test */
+    public function it_can_greet_juan_in_the_morning(): void
+    {
+        $timeStub = $this->createTimeStub('7');
+        $greeter = new Greeter($timeStub);
+
+        $this->assertSame('¡Buenos días Juan!', $greeter->greet('Juan'));
+    }
+
+    /** @test */
     public function it_can_return_buenas_noches_pedro()
     {
         $timeStub = $this->createTimeStub('00');
