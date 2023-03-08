@@ -1,0 +1,34 @@
+{
+    "name": "kudashevs/ohce-kata",
+    "description": "A solution of the Ohce Kata.",
+    "type": "project",
+    "keywords": [
+        "php",
+        "ohce",
+        "kata",
+        "ohce kata"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sergey Kudashev",
+            "email": "kudashevs@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "OhceKata\\InsideOut\\": "InsideOut/src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "OhceKata\\InsideOut\\Tests\\": "InsideOut/tests/"
+        }
+    }
+}
