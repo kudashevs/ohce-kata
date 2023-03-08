@@ -15,7 +15,7 @@ class Greeter
         $this->time = $time;
     }
 
-    public function process(string $name): string
+    public function greet(string $name): string
     {
         $hour = (int)$this->time->format('H');
 

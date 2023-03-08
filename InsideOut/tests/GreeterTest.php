@@ -18,7 +18,7 @@ class GreeterTest extends TestCase
             ->willReturn('00');
         $greeter = new Greeter($timeStub);
 
-        $this->assertSame('¡Buenas noches Pedro!', $greeter->process('Pedro'));
+        $this->assertSame('¡Buenas noches Pedro!', $greeter->greet('Pedro'));
     }
 
     /** @test */
@@ -29,6 +29,6 @@ class GreeterTest extends TestCase
             ->willReturn('7');
         $greeter = new Greeter($timeStub);
 
-        $this->assertSame('¡Buenos días Pedro!', $greeter->process('Pedro'));
+        $this->assertSame('¡Buenos días Pedro!', $greeter->greet('Pedro'));
     }
 }
