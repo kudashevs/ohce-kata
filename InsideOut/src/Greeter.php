@@ -17,13 +17,13 @@ class Greeter
 
     public function greet(string $name): string
     {
-        $hour = (int)$this->time->format('H');
+        $hour = (int)$this->time->format('Hi');
 
-        if ($hour > 6 && $hour <= 12) {
+        if ($hour >= 600 && $hour < 1200) {
             return "¡Buenos días {$name}!";
         }
 
-        if ($hour > 12 && $hour <= 20) {
+        if ($hour >= 1200 && $hour < 2000) {
             return "¡Buenas tardes {$name}!";
         }
 
