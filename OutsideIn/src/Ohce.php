@@ -4,15 +4,18 @@ declare(strict_types=1);
 
 namespace OhceKata\OutsideIn;
 
+use DateTime;
 use OhceKata\InsideOut\Output\OutputInterface;
 
 class Ohce
 {
     private OutputInterface $output;
+    private DateTime $time;
 
-    public function __construct(OutputInterface $output)
+    public function __construct(OutputInterface $output, DateTime $time)
     {
         $this->output = $output;
+        $this->time = $time;
     }
 
     public function run(string $name): void
@@ -22,7 +25,13 @@ class Ohce
 
     private function greet(string $name): void
     {
-        $greeting = "¡Buenas noches {$name}!";
+        $hour = (int)$this->time->format('H');
+
+        if ($hour >= 6 && $hour <= 12) {
+            $greeting = "¡Buenos días {$name}!";
+        } else {
+            $greeting = "¡Buenas noches {$name}!";
+        }
 
         $this->output->writeLine($greeting);
     }
