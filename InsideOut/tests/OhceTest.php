@@ -33,4 +33,33 @@ class OhceTest extends TestCase
         $app = new Ohce($inputMock, $outputMock, $timeMock);
         $app->run('Pedro');
     }
+
+    /** @test */
+    public function it_can_greet_juan_and_process_a_non_palindrome()
+    {
+        $inputMock = $this->createMock(InputInterface::class);
+        $inputMock->expects($this->exactly(2))
+            ->method('readLine')
+            ->willReturnOnConsecutiveCalls(
+                'not',
+                'Stop!',
+            );
+
+        $outputMock = $this->createMock(OutputInterface::class);
+        $outputMock->expects($this->exactly(3))
+            ->method('writeLine')
+            ->withConsecutive(
+                [$this->stringContains('noches')],
+                [$this->stringContains('ton')],
+                [$this->stringContains('adios')],
+            );
+
+        $timeMock = $this->createMock(DateTime::class);
+        $timeMock->expects($this->once())
+            ->method('format')
+            ->willReturn('2100');
+
+        $app = new Ohce($inputMock, $outputMock, $timeMock);
+        $app->run('Juan');
+    }
 }
