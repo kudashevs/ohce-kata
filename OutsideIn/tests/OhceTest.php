@@ -42,4 +42,20 @@ class OhceTest extends TestCase
         $ohce = new Ohce($outputMock, $timeStub);
         $ohce->run('Juan');
     }
+
+    /** @test */
+    public function it_can_greet_albert_during_the_noon()
+    {
+        $outputMock = $this->createMock(OutputInterface::class);
+        $outputMock->expects($this->once())
+            ->method('writeLine')
+            ->with('¡Buenas tardes Albert!');
+
+        $timeStub = $this->createStub(DateTime::class);
+        $timeStub->method('format')
+            ->willReturn('13');
+
+        $ohce = new Ohce($outputMock, $timeStub);
+        $ohce->run('Albert');
+    }
 }

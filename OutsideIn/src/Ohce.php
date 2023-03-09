@@ -27,8 +27,10 @@ class Ohce
     {
         $hour = (int)$this->time->format('H');
 
-        if ($hour >= 6 && $hour <= 12) {
+        if ($hour >= 6 && $hour < 12) {
             $greeting = "¡Buenos días {$name}!";
+        } elseif ($hour >= 12 && $hour < 20) {
+            $greeting = "¡Buenas tardes {$name}!";
         } else {
             $greeting = "¡Buenas noches {$name}!";
         }
