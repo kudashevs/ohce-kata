@@ -23,12 +23,14 @@
     },
     "autoload": {
         "psr-4": {
-            "OhceKata\\InsideOut\\": "InsideOut/src/"
+            "OhceKata\\InsideOut\\": "InsideOut/src/",
+            "OhceKata\\OutsideIn\\": "OutsideIn/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "OhceKata\\InsideOut\\Tests\\": "InsideOut/tests/"
+            "OhceKata\\InsideOut\\Tests\\": "InsideOut/tests/",
+            "OhceKata\\OutsideIn\\Tests\\": "OutsideIn/tests/"
         }
     },
     "scripts": {
