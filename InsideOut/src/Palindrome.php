@@ -6,7 +6,7 @@ namespace OhceKata\InsideOut;
 
 class Palindrome
 {
-    const PALINDROME_MESSAGE = '¡Bonita palabra!';
+    private const PALINDROME_MESSAGE = '¡Bonita palabra!';
 
     public function process(string $str): string
     {
