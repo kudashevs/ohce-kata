@@ -11,13 +11,17 @@
         processIsolation="false"
         stopOnFailure="false">
     <testsuites>
-        <testsuite name="Test Suite">
+        <testsuite name="InsideOut">
             <directory suffix="Test.php">./InsideOut/tests</directory>
+        </testsuite>
+        <testsuite name="OutsideIn">
+            <directory suffix="Test.php">./OutsideIn/tests</directory>
         </testsuite>
     </testsuites>
     <coverage ignoreDeprecatedCodeUnits="true">
         <include>
             <directory suffix=".php">./InsideOut/src</directory>
+            <directory suffix=".php">./OutsideIn/src</directory>
         </include>
         <report>
             <clover outputFile="build/clover.xml"/>
