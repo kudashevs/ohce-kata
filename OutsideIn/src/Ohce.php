@@ -5,15 +5,18 @@ declare(strict_types=1);
 namespace OhceKata\OutsideIn;
 
 use DateTime;
+use OhceKata\InsideOut\Input\InputInterface;
 use OhceKata\InsideOut\Output\OutputInterface;
 
 class Ohce
 {
+    private InputInterface $input;
     private OutputInterface $output;
     private DateTime $time;
 
-    public function __construct(OutputInterface $output, DateTime $time)
+    public function __construct(InputInterface $input, OutputInterface $output, DateTime $time)
     {
+        $this->input = $input;
         $this->output = $output;
         $this->time = $time;
     }
@@ -21,6 +24,11 @@ class Ohce
     public function run(string $name): void
     {
         $this->greet($name);
+
+        while (($next = $this->input->readLine()) !== 'Stop!') {
+        }
+
+        $this->stop($name);
     }
 
     private function greet(string $name): void
@@ -36,5 +44,12 @@ class Ohce
         }
 
         $this->output->writeLine($greeting);
+    }
+
+    private function stop(string $name): void
+    {
+        $farewell = "Adios {$name}";
+
+        $this->output->writeLine($farewell);
     }
 }
