@@ -18,10 +18,7 @@ class OhceTest extends TestCase
     {
         $inputMock = $this->createInputMock([]);
         $outputMock = $this->createOutputMock(['¡Buenas noches Pedro!']);
-
-        $timeStub = $this->createStub(DateTime::class);
-        $timeStub->method('format')
-            ->willReturn('21');
+        $timeStub = $this->createTimeStub('21:00');
 
         $ohce = new Ohce($inputMock, $outputMock, $timeStub);
         $ohce->run('Pedro');
@@ -32,10 +29,7 @@ class OhceTest extends TestCase
     {
         $inputMock = $this->createInputMock([]);
         $outputMock = $this->createOutputMock(['¡Buenos días Juan!']);
-
-        $timeStub = $this->createStub(DateTime::class);
-        $timeStub->method('format')
-            ->willReturn('6');
+        $timeStub = $this->createTimeStub('6:00');
 
         $ohce = new Ohce($inputMock, $outputMock, $timeStub);
         $ohce->run('Juan');
@@ -46,10 +40,7 @@ class OhceTest extends TestCase
     {
         $inputMock = $this->createInputMock([]);
         $outputMock = $this->createOutputMock(['¡Buenas tardes Albert!']);
-
-        $timeStub = $this->createStub(DateTime::class);
-        $timeStub->method('format')
-            ->willReturn('13');
+        $timeStub = $this->createTimeStub('13:00');
 
         $ohce = new Ohce($inputMock, $outputMock, $timeStub);
         $ohce->run('Albert');
@@ -60,10 +51,7 @@ class OhceTest extends TestCase
     {
         $inputMock = $this->createInputMock([]);
         $outputMock = $this->createOutputMock([$this->anything()]);
-
-        $timeStub = $this->createStub(DateTime::class);
-        $timeStub->method('format')
-            ->willReturn('13');
+        $timeStub = $this->createTimeStub('13:00');
 
         $ohce = new Ohce($inputMock, $outputMock, $timeStub);
         $ohce->run('Pedro');
@@ -77,10 +65,7 @@ class OhceTest extends TestCase
             $this->stringContains('Pedro'),
             'ton',
         ]);
-
-        $timeStub = $this->createStub(DateTime::class);
-        $timeStub->method('format')
-            ->willReturn('13');
+        $timeStub = $this->createTimeStub('13:00');
 
         $ohce = new Ohce($inputMock, $outputMock, $timeStub);
         $ohce->run('Pedro');
@@ -94,10 +79,7 @@ class OhceTest extends TestCase
             $this->stringContains('Pedro'),
             'non' . PHP_EOL . '¡Bonita palabra!',
         ]);
-
-        $timeStub = $this->createStub(DateTime::class);
-        $timeStub->method('format')
-            ->willReturn('13');
+        $timeStub = $this->createTimeStub('13:00');
 
         $ohce = new Ohce($inputMock, $outputMock, $timeStub);
         $ohce->run('Pedro');
@@ -137,5 +119,18 @@ class OhceTest extends TestCase
             );
 
         return $outputMock;
+    }
+
+    /**
+     * @return MockObject
+     */
+    private function createTimeStub(string $hour): DateTime
+    {
+        $time = str_replace(':', '', $hour);
+        $timeStub = $this->createStub(DateTime::class);
+        $timeStub->method('format')
+            ->willReturn($time);
+
+        return $timeStub;
     }
 }

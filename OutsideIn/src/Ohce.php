@@ -37,11 +37,11 @@ class Ohce
 
     private function greet(string $name): void
     {
-        $hour = (int)$this->time->format('H');
+        $hour = (int)$this->time->format('Hi');
 
-        if ($hour >= 6 && $hour < 12) {
+        if ($hour >= 600 && $hour < 1200) {
             $greeting = "¡Buenos días {$name}!";
-        } elseif ($hour >= 12 && $hour < 20) {
+        } elseif ($hour >= 1200 && $hour < 2000) {
             $greeting = "¡Buenas tardes {$name}!";
         } else {
             $greeting = "¡Buenas noches {$name}!";
