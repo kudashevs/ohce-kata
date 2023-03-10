@@ -46,6 +46,40 @@ class OhceTest extends TestCase
         $ohce->run('Albert');
     }
 
+    /**
+     * @test
+     * @dataProvider provideDifferentHoursForPedro
+     */
+    public function it_can_greet_pedro_in_time(DateTime $time, string $expected)
+    {
+        $inputMock = $this->createInputMock([]);
+        $outputMock = $this->createOutputMock([$expected]);
+
+        $ohce = new Ohce($inputMock, $outputMock, $time);
+        $ohce->run('Pedro');
+    }
+
+    public function provideDifferentHoursForPedro(): array
+    {
+        /**
+         * 20:00 => 05:59 is equal to night
+         * 06:00 => 11:59 is equal to morning
+         * 12:00 => 19:59 is equal to noon
+         */
+        return [
+            'before night greeting' => [$this->createTimeStub('19:59'), '¡Buenas tardes Pedro!'],
+            'night greeting' => [$this->createTimeStub('20:00'), '¡Buenas noches Pedro!'],
+            'after night greeting' => [$this->createTimeStub('20:01'), '¡Buenas noches Pedro!'],
+            'midnight greeting' => [$this->createTimeStub('00:00'), '¡Buenas noches Pedro!'],
+            'before morning greeting' => [$this->createTimeStub('5:59'), '¡Buenas noches Pedro!'],
+            'morning greeting' => [$this->createTimeStub('6:00'), '¡Buenos días Pedro!'],
+            'after morning greeting' => [$this->createTimeStub('6:01'), '¡Buenos días Pedro!'],
+            'before noon greeting' => [$this->createTimeStub('11:59'), '¡Buenos días Pedro!'],
+            'noon greeting' => [$this->createTimeStub('12:00'), '¡Buenas tardes Pedro!'],
+            'after noon greeting' => [$this->createTimeStub('12:01'), '¡Buenas tardes Pedro!'],
+        ];
+    }
+
     /** @test */
     public function it_can_stop_processing()
     {
