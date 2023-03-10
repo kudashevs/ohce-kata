@@ -119,6 +119,28 @@ class OhceTest extends TestCase
         $ohce->run('Pedro');
     }
 
+    /** @test */
+    public function it_passes_the_example_equal_to_acceptance_test()
+    {
+        $inputMock = $this->createInputMock([
+            'hola',
+            'oto',
+            'stop',
+            'Stop!',
+        ]);
+        $outputMock = $this->createOutputMock([
+            '¡Buenos días Pedro!',
+            'aloh',
+            'oto' . PHP_EOL . '¡Bonita palabra!',
+            'pots',
+            'Adios Pedro',
+        ]);
+        $timeStub = $this->createTimeStub('9:00');
+
+        $app = new Ohce($inputMock, $outputMock, $timeStub);
+        $app->run('Pedro');
+    }
+
     /**
      * @return MockObject
      */
