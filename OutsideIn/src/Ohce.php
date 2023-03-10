@@ -51,9 +51,20 @@ class Ohce
 
     private function process(string $input)
     {
-        $reversed = strrev($input);
+        if ($this->isPalindrome($input)) {
+            $output = $input . PHP_EOL . '¡Bonita palabra!';
+        } else {
+            $output = strrev($input);
+        }
 
-        $this->output->writeLine($reversed);
+        $this->output->writeLine($output);
+    }
+
+    private function isPalindrome(string $input): bool
+    {
+        $letters = str_split($input);
+
+        return count($letters) > 1 && $letters === array_reverse($letters);
     }
 
     private function stop(string $name): void

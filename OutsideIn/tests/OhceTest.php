@@ -86,6 +86,23 @@ class OhceTest extends TestCase
         $ohce->run('Pedro');
     }
 
+    /** @test */
+    public function it_can_process_a_palindrome()
+    {
+        $inputMock = $this->createInputMock(['non']);
+        $outputMock = $this->createOutputMock([
+            $this->stringContains('Pedro'),
+            'non' . PHP_EOL . '¡Bonita palabra!',
+        ]);
+
+        $timeStub = $this->createStub(DateTime::class);
+        $timeStub->method('format')
+            ->willReturn('13');
+
+        $ohce = new Ohce($inputMock, $outputMock, $timeStub);
+        $ohce->run('Pedro');
+    }
+
     /**
      * @return MockObject
      */
