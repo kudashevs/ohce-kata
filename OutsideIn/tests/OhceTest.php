@@ -8,6 +8,7 @@ use DateTime;
 use OhceKata\InsideOut\Input\InputInterface;
 use OhceKata\InsideOut\Output\OutputInterface;
 use OhceKata\OutsideIn\Ohce;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class OhceTest extends TestCase
@@ -15,10 +16,7 @@ class OhceTest extends TestCase
     /** @test */
     public function it_can_greet_pedro_in_the_night()
     {
-        $inputMock = $this->createStub(InputInterface::class);
-        $inputMock->expects($this->once())
-            ->method('readLine')
-            ->willReturn('Stop!');
+        $inputMock = $this->createInputMock([]);
 
         $outputMock = $this->createMock(OutputInterface::class);
         $outputMock->expects($this->atLeastOnce())
@@ -39,10 +37,7 @@ class OhceTest extends TestCase
     /** @test */
     public function it_can_greet_juan_in_the_morning()
     {
-        $inputMock = $this->createStub(InputInterface::class);
-        $inputMock->expects($this->once())
-            ->method('readLine')
-            ->willReturn('Stop!');
+        $inputMock = $this->createInputMock([]);
 
         $outputMock = $this->createMock(OutputInterface::class);
         $outputMock->expects($this->atLeastOnce())
@@ -63,10 +58,7 @@ class OhceTest extends TestCase
     /** @test */
     public function it_can_greet_albert_during_the_noon()
     {
-        $inputMock = $this->createStub(InputInterface::class);
-        $inputMock->expects($this->once())
-            ->method('readLine')
-            ->willReturn('Stop!');
+        $inputMock = $this->createInputMock([]);
 
         $outputMock = $this->createMock(OutputInterface::class);
         $outputMock->expects($this->atLeastOnce())
@@ -87,10 +79,7 @@ class OhceTest extends TestCase
     /** @test */
     public function it_can_stop_processing()
     {
-        $inputMock = $this->createStub(InputInterface::class);
-        $inputMock->expects($this->once())
-            ->method('readLine')
-            ->willReturn('Stop!');
+        $inputMock = $this->createInputMock([]);
 
         $outputMock = $this->createMock(OutputInterface::class);
         $outputMock->expects($this->atLeastOnce())
@@ -106,5 +95,22 @@ class OhceTest extends TestCase
 
         $ohce = new Ohce($inputMock, $outputMock, $timeStub);
         $ohce->run('Pedro');
+    }
+
+    /**
+     * @return MockObject
+     */
+    private function createInputMock(array $returns): InputInterface
+    {
+        $consecutiveReturns = array_merge($returns, ['Stop!']);
+
+        $inputMock = $this->createStub(InputInterface::class);
+        $inputMock->expects($this->atLeastOnce())
+            ->method('readLine')
+            ->willReturnOnConsecutiveCalls(
+                ...$consecutiveReturns,
+            );
+
+        return $inputMock;
     }
 }
