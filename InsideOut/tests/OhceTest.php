@@ -96,4 +96,37 @@ class OhceTest extends TestCase
         $app = new Ohce($inputMock, $outputMock, $timeMock);
         $app->run('Albert');
     }
+
+    /** @test */
+    public function it_passes_the_example_equal_to_acceptance_test()
+    {
+        $inputMock = $this->createMock(InputInterface::class);
+        $inputMock->expects($this->exactly(4))
+            ->method('readLine')
+            ->willReturnOnConsecutiveCalls(
+                'hola',
+                'oto',
+                'stop',
+                'Stop!',
+            );
+
+        $outputMock = $this->createMock(OutputInterface::class);
+        $outputMock->expects($this->exactly(5))
+            ->method('writeLine')
+            ->withConsecutive(
+                ['¡Buenos días Pedro!'],
+                ['aloh'],
+                ['oto' . PHP_EOL . '¡Bonita palabra!'],
+                ['pots'],
+                ['Adios Pedro'],
+            );
+
+        $timeMock = $this->createMock(DateTime::class);
+        $timeMock->expects($this->once())
+            ->method('format')
+            ->willReturn('900');
+
+        $app = new Ohce($inputMock, $outputMock, $timeMock);
+        $app->run('Pedro');
+    }
 }
