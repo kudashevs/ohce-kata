@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OhceKata\InsideOut;
 
 use DateTime;
 use OhceKata\InsideOut\Input\InputInterface;
 use OhceKata\InsideOut\Output\OutputInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class OhceTest extends TestCase
@@ -25,12 +28,9 @@ class OhceTest extends TestCase
                 [$this->stringContains('adios')],
             );
 
-        $timeMock = $this->createMock(DateTime::class);
-        $timeMock->expects($this->once())
-            ->method('format')
-            ->willReturn('900');
+        $timeStub = $this->createTimeStub('9:00');
 
-        $app = new Ohce($inputMock, $outputMock, $timeMock);
+        $app = new Ohce($inputMock, $outputMock, $timeStub);
         $app->run('Pedro');
     }
 
@@ -54,12 +54,9 @@ class OhceTest extends TestCase
                 [$this->stringContains('adios')],
             );
 
-        $timeMock = $this->createMock(DateTime::class);
-        $timeMock->expects($this->once())
-            ->method('format')
-            ->willReturn('2100');
+        $timeStub = $this->createTimeStub('21:00');
 
-        $app = new Ohce($inputMock, $outputMock, $timeMock);
+        $app = new Ohce($inputMock, $outputMock, $timeStub);
         $app->run('Juan');
     }
 
@@ -88,12 +85,9 @@ class OhceTest extends TestCase
                 [$this->stringContains('adios')],
             );
 
-        $timeMock = $this->createMock(DateTime::class);
-        $timeMock->expects($this->once())
-            ->method('format')
-            ->willReturn('2100');
+        $timeStub = $this->createTimeStub('21:00');
 
-        $app = new Ohce($inputMock, $outputMock, $timeMock);
+        $app = new Ohce($inputMock, $outputMock, $timeStub);
         $app->run('Albert');
     }
 
@@ -121,12 +115,22 @@ class OhceTest extends TestCase
                 ['Adios Pedro'],
             );
 
-        $timeMock = $this->createMock(DateTime::class);
-        $timeMock->expects($this->once())
-            ->method('format')
-            ->willReturn('900');
+        $timeStub = $this->createTimeStub('9:00');
 
-        $app = new Ohce($inputMock, $outputMock, $timeMock);
+        $app = new Ohce($inputMock, $outputMock, $timeStub);
         $app->run('Pedro');
+    }
+
+    /**
+     * @return MockObject
+     */
+    private function createTimeStub(string $hour): DateTime
+    {
+        $time = str_replace(':', '', $hour);
+        $timeStub = $this->createStub(DateTime::class);
+        $timeStub->method('format')
+            ->willReturn($time);
+
+        return $timeStub;
     }
 }
