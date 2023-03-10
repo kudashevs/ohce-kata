@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace OhceKata\OutsideIn;
 
 use DateTime;
-use OhceKata\InsideOut\Input\InputInterface;
-use OhceKata\InsideOut\Output\OutputInterface;
+use OhceKata\OutsideIn\Input\InputInterface;
+use OhceKata\OutsideIn\Output\OutputInterface;
 
 class Ohce
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OhceKata\InsideOut\Input;
+namespace OhceKata\OutsideIn\Input;
 
 interface InputInterface
 {

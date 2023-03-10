@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace OhceKata\OutsideIn\Tests;
 
 use DateTime;
-use OhceKata\InsideOut\Input\InputInterface;
-use OhceKata\InsideOut\Output\OutputInterface;
+use OhceKata\OutsideIn\Input\InputInterface;
 use OhceKata\OutsideIn\Ohce;
+use OhceKata\OutsideIn\Output\OutputInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 

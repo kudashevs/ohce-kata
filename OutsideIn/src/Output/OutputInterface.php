@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OhceKata\InsideOut\Output;
+namespace OhceKata\OutsideIn\Output;
 
 interface OutputInterface
 {
