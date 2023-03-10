@@ -10,6 +10,8 @@ use OhceKata\InsideOut\Output\OutputInterface;
 
 class Ohce
 {
+    private const STOP_WORD = 'Stop!';
+
     private InputInterface $input;
     private OutputInterface $output;
     private DateTime $time;
@@ -25,7 +27,7 @@ class Ohce
     {
         $this->greet($name);
 
-        while (($next = $this->input->readLine()) !== 'Stop!') {
+        while (($next = $this->input->readLine()) !== self::STOP_WORD) {
             $this->process($next);
         }
 
