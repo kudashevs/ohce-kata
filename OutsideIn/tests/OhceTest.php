@@ -70,7 +70,7 @@ class OhceTest extends TestCase
     }
 
     /** @test */
-    public function it_can_reverse_echoing_when_not_a_palidrome()
+    public function it_can_process_a_non_palidrome()
     {
         $inputMock = $this->createInputMock(['not']);
         $outputMock = $this->createOutputMock([
