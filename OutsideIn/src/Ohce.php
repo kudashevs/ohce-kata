@@ -11,6 +11,7 @@ use OhceKata\InsideOut\Output\OutputInterface;
 class Ohce
 {
     private const STOP_WORD = 'Stop!';
+    private const PALINDROME_MESSAGE = '¡Bonita palabra!';
 
     private InputInterface $input;
     private OutputInterface $output;
@@ -52,7 +53,7 @@ class Ohce
     private function process(string $input)
     {
         if ($this->isPalindrome($input)) {
-            $output = $input . PHP_EOL . '¡Bonita palabra!';
+            $output = $input . PHP_EOL . self::PALINDROME_MESSAGE;
         } else {
             $output = strrev($input);
         }
