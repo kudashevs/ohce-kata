@@ -69,6 +69,23 @@ class OhceTest extends TestCase
         $ohce->run('Pedro');
     }
 
+    /** @test */
+    public function it_can_reverse_echoing_when_not_a_palidrome()
+    {
+        $inputMock = $this->createInputMock(['not']);
+        $outputMock = $this->createOutputMock([
+            $this->stringContains('Pedro'),
+            'ton',
+        ]);
+
+        $timeStub = $this->createStub(DateTime::class);
+        $timeStub->method('format')
+            ->willReturn('13');
+
+        $ohce = new Ohce($inputMock, $outputMock, $timeStub);
+        $ohce->run('Pedro');
+    }
+
     /**
      * @return MockObject
      */

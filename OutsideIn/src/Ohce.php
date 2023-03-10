@@ -26,6 +26,7 @@ class Ohce
         $this->greet($name);
 
         while (($next = $this->input->readLine()) !== 'Stop!') {
+            $this->process($next);
         }
 
         $this->stop($name);
@@ -44,6 +45,13 @@ class Ohce
         }
 
         $this->output->writeLine($greeting);
+    }
+
+    private function process(string $input)
+    {
+        $reversed = strrev($input);
+
+        $this->output->writeLine($reversed);
     }
 
     private function stop(string $name): void
