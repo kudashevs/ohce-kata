@@ -73,5 +73,6 @@ class Ohce
         $farewell = "Adios {$name}";
 
         $this->output->writeLine($farewell);
+        $this->output->terminate(0);
     }
 }
