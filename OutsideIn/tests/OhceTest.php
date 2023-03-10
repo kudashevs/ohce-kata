@@ -17,14 +17,7 @@ class OhceTest extends TestCase
     public function it_can_greet_pedro_in_the_night()
     {
         $inputMock = $this->createInputMock([]);
-
-        $outputMock = $this->createMock(OutputInterface::class);
-        $outputMock->expects($this->atLeastOnce())
-            ->method('writeLine')
-            ->withConsecutive(
-                ['¡Buenas noches Pedro!'],
-                [$this->stringContains('adios')],
-            );
+        $outputMock = $this->createOutputMock(['¡Buenas noches Pedro!']);
 
         $timeStub = $this->createStub(DateTime::class);
         $timeStub->method('format')
@@ -38,14 +31,7 @@ class OhceTest extends TestCase
     public function it_can_greet_juan_in_the_morning()
     {
         $inputMock = $this->createInputMock([]);
-
-        $outputMock = $this->createMock(OutputInterface::class);
-        $outputMock->expects($this->atLeastOnce())
-            ->method('writeLine')
-            ->withConsecutive(
-                ['¡Buenos días Juan!'],
-                [$this->stringContains('adios')],
-            );
+        $outputMock = $this->createOutputMock(['¡Buenos días Juan!']);
 
         $timeStub = $this->createStub(DateTime::class);
         $timeStub->method('format')
@@ -59,14 +45,7 @@ class OhceTest extends TestCase
     public function it_can_greet_albert_during_the_noon()
     {
         $inputMock = $this->createInputMock([]);
-
-        $outputMock = $this->createMock(OutputInterface::class);
-        $outputMock->expects($this->atLeastOnce())
-            ->method('writeLine')
-            ->withConsecutive(
-                ['¡Buenas tardes Albert!'],
-                [$this->stringContains('adios')],
-            );
+        $outputMock = $this->createOutputMock(['¡Buenas tardes Albert!']);
 
         $timeStub = $this->createStub(DateTime::class);
         $timeStub->method('format')
@@ -80,14 +59,7 @@ class OhceTest extends TestCase
     public function it_can_stop_processing()
     {
         $inputMock = $this->createInputMock([]);
-
-        $outputMock = $this->createMock(OutputInterface::class);
-        $outputMock->expects($this->atLeastOnce())
-            ->method('writeLine')
-            ->withConsecutive(
-                [$this->anything()],
-                [$this->stringContains('adios')],
-            );
+        $outputMock = $this->createOutputMock([$this->anything()]);
 
         $timeStub = $this->createStub(DateTime::class);
         $timeStub->method('format')
@@ -112,5 +84,24 @@ class OhceTest extends TestCase
             );
 
         return $inputMock;
+    }
+
+    /**
+     * @return MockObject
+     */
+    private function createOutputMock(array $arguments): OutputInterface
+    {
+        $consecutiveArguments = array_map(function ($argument) {
+            return [$argument];
+        }, array_merge($arguments, [$this->stringContains('adios')]));
+
+        $outputMock = $this->createMock(OutputInterface::class);
+        $outputMock->expects($this->atLeastOnce())
+            ->method('writeLine')
+            ->withConsecutive(
+                ...$consecutiveArguments,
+            );
+
+        return $outputMock;
     }
 }
