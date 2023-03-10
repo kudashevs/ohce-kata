@@ -33,7 +33,7 @@ class GreeterTest extends TestCase
      * @test
      * @dataProvider provideDifferentHoursForPedro
      */
-    public function it_can_greet_pedro(DateTime $time, string $expected)
+    public function it_can_greet_pedro_in_time(DateTime $time, string $expected)
     {
         $greeter = new Greeter($time);
 
